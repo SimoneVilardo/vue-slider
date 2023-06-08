@@ -6,6 +6,7 @@ const {createApp} = Vue;
 createApp({
     data() {
         return {
+            // Array delle immagini
             slides: [
                 {
                     image: 'img/01.webp',
@@ -33,6 +34,7 @@ createApp({
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
             ], 
+            // Indice dell' immagine attualmente visualizzata
             attivaImmagine : 0           
         }
     },
@@ -40,26 +42,33 @@ createApp({
         this.avviaAutoScroll();
     },
     methods: {
+         // Funzione per cambiare l'immagine attiva in base all'indice passato come parametro
         cambiaImmagine(index){
             this.attivaImmagine = index;
         },
+        // Funzione per passare all'immagine successiva
         imgSuccessiva(){
             this.attivaImmagine++;
+            // Se l'indice supera la lunghezza dell'array delle slides, torna alla prima immagine
             if(this.attivaImmagine > this.slides.length - 1){
                 this.attivaImmagine = 0
             }
         },
+        // Funzione per tornare all'immagine precedente
         imgPrecedente(){
             this.attivaImmagine--;
+            // Se l'indice diventa negativo, torna all'ultima immagine dell'array
             if(this.attivaImmagine < 0){
                 this.attivaImmagine = this.slides.length - 1
             }
         },
+        //Funzione per avviare l'autoscroll
         avviaAutoScroll(){
             this.autoScroll = setInterval(() =>{
                 this.imgSuccessiva()
             }, 3000);
         },
+        //Funzione per fermare l'autoscroll
         fermaAutoScroll(){
             clearInterval(this.autoScroll);
         }
