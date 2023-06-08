@@ -36,6 +36,9 @@ createApp({
             attivaImmagine : 0           
         }
     },
+    created() {
+        this.avviaAutoScroll();
+    },
     methods: {
         cambiaImmagine(index){
             this.attivaImmagine = index;
@@ -51,6 +54,15 @@ createApp({
             if(this.attivaImmagine < 0){
                 this.attivaImmagine = this.slides.length - 1
             }
+        },
+        avviaAutoScroll(){
+            this.autoScroll = setInterval(() =>{
+                this.imgSuccessiva()
+            }, 3000);
+        },
+        fermaAutoScroll(){
+            clearInterval(this.autoScroll);
         }
+        
     },
 }).mount('#app')
